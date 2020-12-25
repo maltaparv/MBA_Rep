@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.960
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBA_Rep", "MBA_Rep.csproj", "{792A2060-EF32-41A1-8BA9-C7E8B50C0603}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBA_Rep", "MBA_Rep\MBA_Rep.csproj", "{792A2060-EF32-41A1-8BA9-C7E8B50C0603}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6CB1CB80-3623-4E17-9D92-82871E9D34A9}
+		SolutionGuid = {62F74A66-DFFE-4B6F-A39F-F94E1FAEBA3F}
 	EndGlobalSection
 EndGlobal
