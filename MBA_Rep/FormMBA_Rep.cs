@@ -15,7 +15,8 @@ using Excel = Microsoft.Office.Interop.Excel;
 //********************************************************************************************
 //                           LICENSE INFORMATION
 //********************************************************************************************
-// MBA_Pep. Copyright (C) 2020 Vladimir A. Maltapar
+// MBA_Rep. Run different reports from text files with SQL Select and some parameters.
+//   Copyright (C) 2020 Vladimir A. Maltapar
 //   Email: maltapar@gmail.com
 // Created: 07 January 2020
 //
@@ -261,15 +262,11 @@ namespace MBA_Rep
             {
                 myIP += adr.ToString() + "  ";
             }
-            /*
-            IPHostEntry host = Dns.GetHostByName(Host);
-            foreach (IPAddress ip in host.AddressList) myIP += ip.ToString() + "  ";
-            //Lbl_IP_List.Text = $"все IP: {myIP}";
-            string IP = Dns.GetHostByName(Host).AddressList[0].ToString();
-            //Lbl_IP.Text = "IP: " + IP;
-            */
             CmbTest.SelectedIndex = 0;  // первый (нулевой) элемент - текущий, видимый.
-            this.Pic1.Image = new Bitmap($"{PathIni}\\Pic.png");  // на форме картинка - для различных приложений должна быть другая!
+            if (File.Exists($"{PathIni}\\Pic.png"))
+            {
+             this.Pic1.Image = new Bitmap($"{PathIni}\\Pic.png");  // на форме картинка - для различных приложений должна быть другая!
+            }
         }
         private void ReadParmsIni()     // читать настройки из ini-файла 
         {
