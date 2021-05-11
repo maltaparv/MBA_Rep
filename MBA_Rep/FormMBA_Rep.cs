@@ -224,6 +224,7 @@ namespace MBA_Rep
         private Excel.Application exApp, exApp1, exApp2;
         private Excel.Window exWind;
         private int F_Remind = 0; // флаг - напоминалки
+        private string RunReport = ""; // Отчёт, запускаемый сразу при старте
         private Random rnd = new Random(321);
         #endregion --- Общие параметры
         #region --- для отчётов по Select
@@ -267,6 +268,20 @@ namespace MBA_Rep
             {
              this.Pic1.Image = new Bitmap($"{PathIni}\\Pic.png");  // на форме картинка - для различных приложений должна быть другая!
             }
+            if (RunReport.Length > 0)  //  ToDO Выполнить сразу отчёт !!!!!!!!!!!!!!!!!!!
+            {
+                if (File.Exists(RunReport))
+                {
+                    //fnScript = openFileDialog1.FileName;
+                    fnScript = RunReport;
+                    ParmRep.LastRep = fnScript.Substring(fnScript.LastIndexOf("\\") + 1);   // название последнего выбранного отчёта (без пути)
+                    ParmRep.LastRep = ParmRep.LastRep.Substring(0, ParmRep.LastRep.Length - 4); // без последних 4-х знаков ".sql"
+                    Stat3.Text = "Отчёт: " + ParmRep.LastRep; // записать название выполняемого отчёта
+                    RtbHeader1.Text = Stat3.Text;
+                    
+                    RunScriptFile(fnScript);
+                }
+            }
         }
         private void ReadParmsIni()     // читать настройки из ini-файла 
         {
@@ -297,6 +312,7 @@ namespace MBA_Rep
             // секция [ReportFiles]
             PathRep = iniFile.GetPrivateString("ReportFiles", "PathRep");
             PathDoc = iniFile.GetPrivateString("ReportFiles", "PathDoc");
+            RunReport = iniFile.GetPrivateString("ReportFiles", "RunReport").Trim();
 
             // секция [LogFiles]
             PathLogDir = iniFile.GetPrivateString("LogFiles", "PathLogDir");
@@ -310,6 +326,7 @@ namespace MBA_Rep
             int.TryParse(sRemind, out F_Remind); // F_Remind == 0 or 1
             /* Пример содержимого:
             sModes=(без лога приёма),(лог квиточка),(Log_Excel),(лог SQL),(лог пациентов без номера истории) 
+            RunReport=Sysmex XN-500. Анализы за сегодня
             qqreq =Qq
             remind=0
             */
@@ -959,7 +976,8 @@ namespace MBA_Rep
             s += $"PathIni: {PathIni}\n";
             s += $"путь к файлам с названиями отчётов.sql (pathRep): {PathRep}\n";
             s += $"путь к файлам с результирующими отчётами (документы .xls .doc) (pathDoc): {PathDoc}\n";
-            s += sep;
+            s += $"выполняемый отчёт при запуске: {RunReport}\n";
+            s += sep;  // RunReport
             s += $"Режимы работы: {sModes}\n";
             s += $"SQL: {nameSQLsrv}\n";
             s += sep;
@@ -1039,6 +1057,11 @@ namespace MBA_Rep
                     return;
                 }
             }
+            RunScriptFile(fnScript);
+        }
+
+        private void RunScriptFile(string fnScript)
+        {
             // начинается обработка параметров...
             //string[] aScript = File.ReadAllLines(fnScript);
             string[] aScript = File.ReadAllLines(fnScript, Encoding.GetEncoding(1251));
@@ -1046,7 +1069,7 @@ namespace MBA_Rep
             Stat2.Text = $" Параметров нет."; // первоначально!
 
             // проверка на наличие параметров в теле скрипта запроса
-            ParmRep.IndParms  = scriptSql.ToUpper().IndexOf(ParmRep.SParam.ToUpper());  // есть признак-строка начала параметров
+            ParmRep.IndParms = scriptSql.ToUpper().IndexOf(ParmRep.SParam.ToUpper());  // есть признак-строка начала параметров
             ParmRep.IsParms = (ParmRep.IndParms != -1);
             ParmRep.IndPeriod = scriptSql.ToUpper().IndexOf(ParmRep.SPeriod.ToUpper());        // есть признак-строка наличия периода
             ParmRep.IsPeriod = (ParmRep.IndPeriod != -1);
@@ -1096,7 +1119,7 @@ namespace MBA_Rep
                 //array = array.Concat(new int[] { 2 }).ToArray();
 
                 // Вариант 4: // параметры есть, если есть признак-строка начала параметров
-                scriptSqlPar = scriptSql.Substring(ParmRep.IndParms+ ParmRep.SParam.Length);
+                scriptSqlPar = scriptSql.Substring(ParmRep.IndParms + ParmRep.SParam.Length);
                 scriptSql = scriptSql.Substring(0, ParmRep.IndParms);
 
                 // будем определять наличие условий перебором по строкам в aScript[i]
@@ -1114,7 +1137,7 @@ namespace MBA_Rep
                     if (aScript[i].ToUpper().IndexOf(ParmRep.SRunExcel.ToUpper()) != -1)
                     {
                         ParmRep.IsRunExel = true;
-                        ParmRep.ExcelMacro= aScript[i + 1].Trim();  // в следующей строке скрипта - название макроса
+                        ParmRep.ExcelMacro = aScript[i + 1].Trim();  // в следующей строке скрипта - название макроса
                     }
                     if (aScript[i].ToUpper().IndexOf(ParmRep.SRunWord.ToUpper()) != -1)
                     {
@@ -1122,7 +1145,7 @@ namespace MBA_Rep
                         ParmRep.WordMacro = aScript[i + 1].Trim();  // в следующей строке скрипта - название макроса
                     }
                 }
-                ParmRep.CntCond =Math.Min(3, ParmRep.CntCond); // органичим тремя, оcтальные игнор. т.к. только три условия на форме
+                ParmRep.CntCond = Math.Min(3, ParmRep.CntCond); // органичим тремя, оcтальные игнор. т.к. только три условия на форме
                 //Stat2.Text = $" Параметры: {ParmRep.LispParms}";
                 Stat2.Text = $"{ParmRep.ListParms}";
                 // если в теле скрипта есть параметры, 
@@ -1137,8 +1160,8 @@ namespace MBA_Rep
 
                 if (ParmRep.IsPeriod)
                 {
-                    ParmRep.ListParms += " с " +ParmRep.Dat1.ToString("dd-MM-yyyy") 
-                                       + " по "+ParmRep.Dat2.ToString("dd-MM-yyyy"); // было: .ToString("yyyy-MM-dd")
+                    ParmRep.ListParms += " с " + ParmRep.Dat1.ToString("dd-MM-yyyy")
+                                       + " по " + ParmRep.Dat2.ToString("dd-MM-yyyy"); // было: .ToString("yyyy-MM-dd")
                 }
                 Stat3.Text += "\n Параметры: " + ParmRep.ListParms;
                 RtbHeader1.Text += "\n" + ParmRep.ListParms;
@@ -1155,7 +1178,7 @@ namespace MBA_Rep
             {
                 //MessageBox.Show("??? ничего не выбрано - была ошибка???\n Нет данных по заданным условиям выборки.", " Внимание!"
                 //           , MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return; 
+                return;
             }
             if (ParmRep.IsRunExel)     // вызывать Excel  2020-01-15 было: if (Chk_Excel.Checked )
             {
@@ -1205,6 +1228,7 @@ namespace MBA_Rep
             }
             WLog(ParmRep.LastRep);  // записать название выполняемого отчёта
         }
+
         private void ОпрограммеToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             //  Справка - О программе
