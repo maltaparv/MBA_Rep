@@ -231,9 +231,9 @@ namespace MBA_Rep
         // для результата Select
         private string scriptSql = "";     // текст Select из файла  - file.OpenText().ReadToEnd();
         private string scriptSqlPar = "";  // текст с параметрами из файла со скриптом (Select...)
-        private string fnScript;
-        private string pathFnCSV = ""; // инициализируется в ReadParmsIni();  // @"D:\TempData\Last_csv.csv";
-        private string fnCSV = ""; // инициализируется в ReadParmsIni(); 
+        private string fnScript = "";      // последний выполненный отчёт (для RunScriptFile)
+        private string pathFnCSV = "";     // инициализируется в ReadParmsIni();  // @"D:\TempData\Last_csv.csv";
+        private string fnCSV = "";         // инициализируется в ReadParmsIni(); 
         private string fnSh = "Шаблон_ОтчётЛАБ.xls"; // имя файла с шаблонами всех отчётов
         private string sres;    // result of SQL select
         private int kRow = 0;   // кол-во строк в выборке по Select
@@ -279,7 +279,7 @@ namespace MBA_Rep
                     Stat3.Text = "Отчёт: " + ParmRep.LastRep; // записать название выполняемого отчёта
                     RtbHeader1.Text = Stat3.Text;
                     
-                    RunScriptFile(fnScript);
+                    RunScriptFile();
                 }
             }
         }
@@ -1046,7 +1046,7 @@ namespace MBA_Rep
                     fnScript = openFileDialog1.FileName;
                     ParmRep.LastRep = fnScript.Substring(fnScript.LastIndexOf("\\")+1 );   // название последнего выбранного отчёта (без пути)
                     ParmRep.LastRep = ParmRep.LastRep.Substring(0, ParmRep.LastRep.Length - 4); // без последних 4-х знаков ".sql"
-                    Stat3.Text = "Отчёт: " + ParmRep.LastRep; // записать название выполняемого отчёта
+                    Stat3.Text = "Отчёт: " + ParmRep.LastRep; // записать название последнего выполняемого отчёта
                     RtbHeader1.Text = Stat3.Text;
                 }
                 else
@@ -1057,12 +1057,12 @@ namespace MBA_Rep
                     return;
                 }
             }
-            RunScriptFile(fnScript);
+            RunScriptFile();
         }
 
-        private void RunScriptFile(string fnScript)
+        private void RunScriptFile()
         {
-            // начинается обработка параметров...
+            // начинается обработка параметров... 
             //string[] aScript = File.ReadAllLines(fnScript);
             string[] aScript = File.ReadAllLines(fnScript, Encoding.GetEncoding(1251));
             scriptSql = String.Concat(aScript);
@@ -1268,7 +1268,7 @@ namespace MBA_Rep
         private void Btn_Repeat_Click(object sender, EventArgs e)
         {
             if (F_Remind == 1) RemindText(); // обновить напоминалки в основном окне
-            RunScriptFile(fnScript);
+            RunScriptFile();
         }
         #endregion --- Menu methods
         // ---
