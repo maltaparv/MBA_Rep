@@ -237,12 +237,12 @@
   </data>
   <data name="настройкаToolStripMenuItem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAADiSURBVDhPtZNNCoNADEa9h5aqF7AnsBsL0nO49lBewrUn
-        S3kD35BRoS2dLh4k8cuPiRZmloXTIDRNa2VZJRDb68QhUNdNTOy6m23bFsBWHM0+L3Gq6mLTNNkwPEIC
-        tgrN8xxiPCOO1udGgy4+cVkWW9c1+tjE5KP1k8VC6ibhOzR1UsgvVl2ZYByfVl/bALYmRCO9DhCnYZns
-        QWIV6ft7QMXUBK0OkBRC4FER+SrmNfC/QozJJT59NbSHV8u2bCD48/kh2wcJWX4RQRcSgGWqkBYLfhKR
-        OB5/AKHFnnEa/B4rXgkzMEqSND0aAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vwAADr8BOAVTJAAAAOJJREFUOE+1k00Kg0AMRr2HlqoXsCewGwvSc7j2UF7CtSdLeQPfkFGhLZ0uHiTx
+        y4+JFmaWhdMgNE1rZVklENvrxCFQ101M7LqbbdsWwFYczT4vcarqYtM02TA8QgK2Cs3zHGI8I47W50aD
+        Lj5xWRZb1zX62MTko/WTxULqJuE7NHVSyC9WXZlgHJ9WX9sAtiZEI70OEKdhmexBYhXp+3tAxdQErQ6Q
+        FELgURH5KuY18L9CjMklPn01tIdXy7ZsIPjz+SHbBwlZfhFBFxKAZaqQFgt+EpE4Hn8AocWecRr8Hite
+        CTMwSpI0PRoAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -384,6 +384,9 @@
   </data>
   <metadata name="notifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>248, 17</value>
+  </metadata>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>361, 17</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

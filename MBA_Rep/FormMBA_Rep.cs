@@ -1264,6 +1264,12 @@ namespace MBA_Rep
             }
             WLog("Добавить/Изменить отчёт");
         }
+
+        private void Btn_Repeat_Click(object sender, EventArgs e)
+        {
+            if (F_Remind == 1) RemindText(); // обновить напоминалки в основном окне
+            RunScriptFile(fnScript);
+        }
         #endregion --- Menu methods
         // ---
         #region --- Действия по кнопкам на форме

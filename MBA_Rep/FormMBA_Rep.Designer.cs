@@ -88,6 +88,7 @@
             this.Btn_tst = new System.Windows.Forms.Button();
             this.RtbHeader1 = new System.Windows.Forms.RichTextBox();
             this.Pic1 = new System.Windows.Forms.PictureBox();
+            this.Btn_Repeat = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -361,7 +362,7 @@
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.ВыходToolStripMenuItem_Click);
             // 
@@ -527,19 +528,19 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(223, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(224, 22);
             this.toolStripMenuItem1.Text = "Общие настройки:";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(223, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(224, 22);
             this.toolStripMenuItem2.Text = "Настройка SDK 24/7 qrk";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(223, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(224, 22);
             this.toolStripMenuItem3.Text = "Параметризация Эйсмарха";
             // 
             // Stat2
@@ -574,12 +575,12 @@
             // 
             // Btn_tst
             // 
-            this.Btn_tst.Location = new System.Drawing.Point(153, 113);
+            this.Btn_tst.Location = new System.Drawing.Point(261, 113);
             this.Btn_tst.Name = "Btn_tst";
             this.Btn_tst.Size = new System.Drawing.Size(32, 24);
             this.Btn_tst.TabIndex = 164;
             this.Btn_tst.Text = "test";
-            this.toolTip1.SetToolTip(this.Btn_tst, "это тест! Не знаешь - не нажимай !!!   :))");
+            this.toolTip1.SetToolTip(this.Btn_tst, "это тест. Не знаешь, что он делает  - НЕ НАЖИМАЙ !!!                       :))");
             this.Btn_tst.UseVisualStyleBackColor = true;
             this.Btn_tst.Click += new System.EventHandler(this.Btn_tst_Click);
             // 
@@ -611,11 +612,23 @@
             this.Pic1.TabStop = false;
             this.Pic1.Click += new System.EventHandler(this.Pic1_click);
             // 
+            // Btn_Repeat
+            // 
+            this.Btn_Repeat.Location = new System.Drawing.Point(153, 113);
+            this.Btn_Repeat.Name = "Btn_Repeat";
+            this.Btn_Repeat.Size = new System.Drawing.Size(74, 24);
+            this.Btn_Repeat.TabIndex = 293;
+            this.Btn_Repeat.Text = "повторить";
+            this.toolTip1.SetToolTip(this.Btn_Repeat, "повторить последний  выполненный оттчёт");
+            this.Btn_Repeat.UseVisualStyleBackColor = true;
+            this.Btn_Repeat.Click += new System.EventHandler(this.Btn_Repeat_Click);
+            // 
             // FormMBA_Rep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 450);
+            this.Controls.Add(this.Btn_Repeat);
             this.Controls.Add(this.RtbHeader1);
             this.Controls.Add(this.Btn_tst);
             this.Controls.Add(this.statusStrip1);
@@ -708,6 +721,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem опрограммеToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem настройкаToolStripMenuItem1;
+        private System.Windows.Forms.Button Btn_Repeat;
     }
 }
 
